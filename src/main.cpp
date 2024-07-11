@@ -1,6 +1,9 @@
-#include <iostream>
+#include "Board.hpp"
 
 auto main(int argc, char* argv[]) -> int {
-    std::cout << "Hello World!\n";
+    auto board = Board();
+
+    std::cout << board.show_board() << "\n";
+
     return 0;
 }

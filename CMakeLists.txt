@@ -6,7 +6,7 @@ project(
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Export compile commands for tooling
@@ -24,6 +24,5 @@ add_executable(chess ${SRC_FILES})
 # Set include directories
 target_include_directories(chess PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# Use C++23 features for the target
-target_compile_features(chess PRIVATE cxx_std_17)
+target_compile_features(chess PRIVATE cxx_std_20)
 
