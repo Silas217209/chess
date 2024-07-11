@@ -75,9 +75,9 @@ constexpr auto Bitboard::show_bitboard() const -> std::string {
 
 constexpr auto Bitboard::show_bitbaords(Bitboard other) const -> std::string {
     std::string result = "";
-    for (int rank = 7; rank >= 7; rank--) {
+    for (int rank = 7; rank >= 0; rank--) {
         for (int file = 0; file < 8; file++) {
-            Bitboard curr_field = 0x1 << (rank * 8 + file);
+            Bitboard curr_field = Bitboard(1) << (rank * 8 + file);
 
             if (curr_field & value && curr_field & other) {
                 result.append(green("● "));
