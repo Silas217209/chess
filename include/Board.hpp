@@ -1,6 +1,4 @@
 #pragma once
-#include <bitset>
-#include <iomanip>
 
 #include "Bitboard.hpp"
 

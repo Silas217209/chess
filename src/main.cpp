@@ -1,21 +1,27 @@
+#include <immintrin.h>
+
+#include <bit>
+#include <cmath>
 #include <cstddef>
-#include <iomanip>
-#include <ios>
+#include <cstdint>
 #include <iostream>
 
 #include "Bitboard.hpp"
 #include "Lookup.hpp"
 
 auto main(int argc, char* argv[]) -> int {
-    const size_t square = 63;
+    for (size_t square = 0; square < 64; square++) {
+        Bitboard mask = lookup::rook_mask[square];
 
-    std::cout << lookup::bishop_mask(0).value;
+        uint64_t max_blockers = pow(2, std::popcount(mask.value));
+        for (size_t i = 0; i < max_blockers; i++) {
+            Bitboard blockers = _pdep_u64(i, mask.value);
 
-    return 0;
+            // North
 
-    for (size_t i = 0; i < 64; i++) {
-        Bitboard moves = lookup::bishop_mask(i);
-        std::cout << "0x" << std::setw(16) << std::setfill('0') << std::hex << moves.value << ",\n";
+        }
+
+        std::cout << max_blockers << "\n";
     }
 
     return 0;

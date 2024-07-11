@@ -1,7 +1,7 @@
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
-#include <iostream>
 #include <string>
 
 #include "Color.hpp"
@@ -59,7 +59,7 @@ constexpr auto Bitboard::show_bitboard() const -> std::string {
     std::string result = "";
     for (int rank = 7; rank >= 0; rank--) {
         for (int file = 0; file < 8; file++) {
-            uint64_t curr_field = 0x1 << (rank * 8 + file);
+            Bitboard curr_field = Bitboard(1) << (rank * 8 + file);
 
             if (curr_field & value) {
                 result.append("● ");
@@ -75,9 +75,9 @@ constexpr auto Bitboard::show_bitboard() const -> std::string {
 
 constexpr auto Bitboard::show_bitbaords(Bitboard other) const -> std::string {
     std::string result = "";
-    for (int rank = 7; rank >= 0; rank--) {
-        for (int file = 0; file < 8; file++) {
-            Bitboard curr_field = Bitboard(1) << (rank * 8 + file);
+    for (size_t curr_rank = 7; curr_rank >= 0; curr_rank--) {
+        for (size_t curr_file = 0; curr_file < 8; curr_file++) {
+            Bitboard curr_field = Bitboard(1) << (curr_rank * 8 + curr_file);
 
             if (curr_field & value && curr_field & other) {
                 result.append(green("● "));
