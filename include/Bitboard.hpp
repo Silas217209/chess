@@ -54,7 +54,6 @@ class Bitboard {
     // clang-format on
 };
 
-// constexpr implementation must be in header file
 constexpr auto Bitboard::show_bitboard() const -> std::string {
     std::string result = "";
     for (int rank = 7; rank >= 0; rank--) {
@@ -75,16 +74,16 @@ constexpr auto Bitboard::show_bitboard() const -> std::string {
 
 constexpr auto Bitboard::show_bitbaords(Bitboard other) const -> std::string {
     std::string result = "";
-    for (size_t curr_rank = 7; curr_rank >= 0; curr_rank--) {
-        for (size_t curr_file = 0; curr_file < 8; curr_file++) {
-            Bitboard curr_field = Bitboard(1) << (curr_rank * 8 + curr_file);
+    for (int rank = 7; rank >= 0; rank--) {
+        for (int file = 0; file < 8; file++) {
+            Bitboard curr_field = Bitboard(1) << (rank * 8 + file);
 
             if (curr_field & value && curr_field & other) {
                 result.append(green("● "));
             } else if (curr_field & value) {
-                result.append(blue("● "));
-            } else if (curr_field & other) {
                 result.append(red("● "));
+            } else if (curr_field & other) {
+                result.append(blue("● "));
             } else {
                 result.append("○ ");
             }
